@@ -78,25 +78,29 @@ public class RotateLauncher : MonoBehaviour
 
 	private void SetBallColor(GameObject go)
 	{
-		BallColor randColor = MoveBalls.GetRandomBallColor();
+		BallType randColor = MoveBalls.GetRandomBallColor();
 
 		switch (randColor)
 		{
-			case BallColor.red:
+			case BallType.red:
 				go.GetComponent<Renderer>().material.SetColor("_Color", Color.red);
 				break;
 
-			case BallColor.green:
+			case BallType.green:
 				go.GetComponent<Renderer>().material.SetColor("_Color", Color.green);
 				break;
 
-			case BallColor.blue:
+			case BallType.blue:
 				go.GetComponent<Renderer>().material.SetColor("_Color", Color.blue);
 				break;
 
-			case BallColor.yellow:
+			case BallType.yellow:
 				go.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
 				break;
+
+            case BallType.bomb:
+                go.GetComponent<Renderer>().material.SetColor("_Color", Color.magenta); //todo change!!!
+                break;
 		}
 	}
 }

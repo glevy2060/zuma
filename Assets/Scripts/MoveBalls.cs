@@ -5,7 +5,6 @@ using BansheeGz.BGSpline.Components;
 using BansheeGz.BGSpline.Curve;
 using DG.Tweening;
 
-
 public struct ActiveBallList
 {
 	List<GameObject> ballList;
@@ -13,12 +12,13 @@ public struct ActiveBallList
 	bool isInTransition;
 }
 
-public enum BallColor
+public enum BallType
 {
 	red,
 	green,
 	blue,
-	yellow
+	yellow,
+    bomb
 }
 
 public class MoveBalls : MonoBehaviour
@@ -27,15 +27,18 @@ public class MoveBalls : MonoBehaviour
 	public GameObject greenBall;
 	public GameObject blueBall;
 	public GameObject yellowBall;
+    public GameObject bombBall;
 
 	public float pathSpeed;
 	public float mergeSpeed;
 	public int ballCount;
 
-	public Ease easeType;
+    public Ease easeType;
 	public Ease mergeEaseType;
-
-	// Private
+   
+    public GameOverScreen GameOverScreen;
+	
+    // Private
 	private List<GameObject> ballList;
 	private GameObject ballsContainerGO;
 	private GameObject removedBallsContainer;
@@ -49,8 +52,8 @@ public class MoveBalls : MonoBehaviour
 	private int touchedBallIndex;
 	private float ballRadius;
 
-	// Use this for initialization
-	private void Start ()
+    // Use this for initialization
+    private void Start ()
 	{
 		ballRadius = redBall.transform.localScale.x;
 		headballIndex = 0;
@@ -123,10 +126,10 @@ public class MoveBalls : MonoBehaviour
 	 * =============
 	 */
 
-	public static BallColor GetRandomBallColor()
+	public static BallType GetRandomBallColor()
 	{
 		int rInt = Random.Range(0, 3);
-		return (BallColor)rInt;
+		return (BallType)rInt;
 	}
 
 	/*
@@ -138,19 +141,19 @@ public class MoveBalls : MonoBehaviour
 	{
 		switch (GetRandomBallColor())
 		{
-			case BallColor.red:
+			case BallType.red:
 				InstatiateBall(redBall);
 				break;
 
-			case BallColor.green:
+			case BallType.green:
 				InstatiateBall(greenBall);
 				break;
 
-			case BallColor.blue:
+			case BallType.blue:
 				InstatiateBall(blueBall);
 				break;
 
-			case BallColor.yellow:
+			case BallType.yellow:
 				InstatiateBall(yellowBall);
 				break;
 		}
@@ -191,6 +194,24 @@ public class MoveBalls : MonoBehaviour
 		}
 	}
 
+    private bool IsGameOver(Vector3 ballPos)
+    {
+        BGCurvePointI lastPoint = bgCurve.Points[bgCurve.Points.GetLength(0) - 1];
+        bool isTheSameXPosition = lastPoint.PositionLocal.x == ballPos.x;
+        print(isTheSameXPosition);
+        if (isTheSameXPosition)
+        {
+            print("game over!");
+            return true;
+        }
+        return false;
+    }
+
+    private void GameOver()
+    {
+        GameOverScreen.SetUp(0); //TODO change 0 to score
+    }
+
 	// Move the active section of balls along the path
 	private void MoveAllBallsAlongPath()
 	{
@@ -212,7 +233,10 @@ public class MoveBalls : MonoBehaviour
 			float currentBallDist = distance - movingBallCount * ballRadius;
 			Vector3 trailPos = GetComponent<BGCcMath>().CalcPositionAndTangentByDistance(currentBallDist , out tangent);
 
-			if (i == addBallIndex && addBallIndex != -1)
+            if (IsGameOver(trailPos))  
+                GameOver();
+  
+            if (i == addBallIndex && addBallIndex != -1)
 				ballList[i].transform.DOMove(trailPos, 0.5f)
 					.SetEase(easeType);
 			else
