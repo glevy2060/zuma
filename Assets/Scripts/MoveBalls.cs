@@ -77,7 +77,9 @@ public class MoveBalls : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
 	{
-		if (sectionData.ballSections.Count > 1 && addBallIndex != -1 && addBallIndex < headballIndex)
+
+
+        if (sectionData.ballSections.Count > 1 && addBallIndex != -1 && addBallIndex < headballIndex)
 			MoveStopeedBallsAlongPath();
 
 		if (ballList.Count > 0)
@@ -198,10 +200,9 @@ public class MoveBalls : MonoBehaviour
     {
         BGCurvePointI lastPoint = bgCurve.Points[bgCurve.Points.GetLength(0) - 1];
         bool isTheSameXPosition = lastPoint.PositionLocal.x == ballPos.x;
-        print(isTheSameXPosition);
+        
         if (isTheSameXPosition)
         {
-            print("game over!");
             return true;
         }
         return false;
@@ -209,7 +210,8 @@ public class MoveBalls : MonoBehaviour
 
     private void GameOver()
     {
-        GameOverScreen.SetUp(0); //TODO change 0 to score
+        int currScore = PointsManager.instance.getScore();
+        GameOverScreen.SetUp(currScore);
     }
 
 	// Move the active section of balls along the path
@@ -314,6 +316,7 @@ public class MoveBalls : MonoBehaviour
 
 	private void MergeSections(int currentIdx, int nextSectionKeyVal)
 	{
+   
 		sectionData.ballSections.Remove(currentIdx - 1);
 		sectionData.ballSections[int.MaxValue] = nextSectionKeyVal;
 	}
@@ -367,13 +370,17 @@ public class MoveBalls : MonoBehaviour
 		int sectionKey = sectionData.GetSectionKey(index);
 		int sectionKeyVal;
 		sectionData.ballSections.TryGetValue(sectionKey, out sectionKeyVal);
+        PointsManager.instance.AddPoints(1);
 
-		// Check if any same color balls towards the front side
-		for (int i = index - 1; i >= sectionKeyVal; i--)
+        // Check if any same color balls towards the front side
+        for (int i = index - 1; i >= sectionKeyVal; i--)
 		{
 			Color currrentBallColor = ballList[i].GetComponent<Renderer>().material.GetColor("_Color");
 			if(ballColor == currrentBallColor)
+            {
 				front = i;
+                PointsManager.instance.AddPoints(1);
+            }
 			else
 				break;
 		}
@@ -470,7 +477,9 @@ public class MoveBalls : MonoBehaviour
 
 		if (headBallColor == nextSectionEndColor)
 			return true;
-
+        
+       
+     
 		return false;
 	}
 

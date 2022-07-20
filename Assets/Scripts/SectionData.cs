@@ -144,7 +144,7 @@ public class SectionData {
 		// when delection takes place in middle of the section which creates a new section
 		else
 		{
-			Debug.Log("Partial: Middle");
+
 			// new section front
 			int newSectionKey = atIndex - 1;
 			ballSections.Add(newSectionKey, sectionKeyVal);
