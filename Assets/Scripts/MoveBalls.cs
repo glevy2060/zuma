@@ -52,14 +52,18 @@ public class MoveBalls : MonoBehaviour
 	private int touchedBallIndex;
 	private float ballRadius;
 
+    private bool doStartOverFlag = false; 
+
     // Use this for initialization
     private void Start ()
 	{
 		ballRadius = redBall.transform.localScale.x;
+        print(redBall.transform.position);
 		headballIndex = 0;
 		addBallIndex = -1;
 
 		bgCurve = GetComponent<BGCurve>();
+        //print(bgCurve.Points[1].PositionLocal);
 		ballList = new List<GameObject>();
 
 		ballsContainerGO = new GameObject();
@@ -69,7 +73,13 @@ public class MoveBalls : MonoBehaviour
 		removedBallsContainer.name = "Removed Balls Container";
 
 		for (int i=0; i < ballCount; i++)
-			CreateNewBall();
+        {
+            if (!doStartOverFlag)
+                CreateNewBall();
+            else
+                CreateNewBallFromBeginning();
+        }
+      
 
 		sectionData = new SectionData();
 	}
@@ -93,6 +103,9 @@ public class MoveBalls : MonoBehaviour
 
 		if (CheckIfActiveEndsMatch())
 			MergeActiveEnds();
+
+        if (ballList.Count == 0)
+            StartOver();
 
 		MergeIfStoppedEndsMatch();
 	}
@@ -134,12 +147,14 @@ public class MoveBalls : MonoBehaviour
 		return (BallType)rInt;
 	}
 
-	/*
+    /*
 	 * Private Section
 	 * =============
 	 */
 
-	private void CreateNewBall()
+
+
+    private void CreateNewBall()
 	{
 		switch (GetRandomBallColor())
 		{
@@ -161,7 +176,46 @@ public class MoveBalls : MonoBehaviour
 		}
 	}
 
-	private void InstatiateBall(GameObject ballGameObject)
+    private void StartOver()
+    {
+        doStartOverFlag = true;
+        LevelManager.instance.ChangeLevel();
+        Start();
+    }
+    
+    private void CreateNewBallFromBeginning()
+    {
+        switch (GetRandomBallColor())
+        {
+            case BallType.red:
+                InstatiateBallFromBeginning(redBall);
+                break;
+
+            case BallType.green:
+                InstatiateBallFromBeginning(greenBall);
+                break;
+
+            case BallType.blue:
+                InstatiateBallFromBeginning(blueBall);
+                break;
+
+            case BallType.yellow:
+                InstatiateBallFromBeginning(yellowBall);
+                break;
+        }
+    }
+
+    private void InstatiateBallFromBeginning(GameObject ballGameObject)
+    {
+        Vector3 test =new Vector3((float)-0.3390636, (float)2.14003, (float)4.850493);
+        //print(test);
+        print(ballsContainerGO.transform);
+        GameObject go = Instantiate(ballGameObject, test, Quaternion.identity, ballsContainerGO.transform);
+        go.SetActive(false);
+        ballList.Add(go.gameObject);
+    }
+
+    private void InstatiateBall(GameObject ballGameObject)
 	{
 		GameObject go = Instantiate(ballGameObject,  bgCurve[0].PositionWorld, Quaternion.identity, ballsContainerGO.transform);
 		go.SetActive(false);
@@ -224,11 +278,21 @@ public class MoveBalls : MonoBehaviour
 		// use a head index value which leads the balls on the path
 		// This value will be changed when balls are delected from the path
 		Vector3 headPos = GetComponent<BGCcMath>().CalcPositionAndTangentByDistance(distance, out tangent);
+
+        //if user finished all balls
+        if (doStartOverFlag)
+        {
+            distance = 0;
+            headPos = GetComponent<BGCcMath>().CalcPositionAndTangentByDistance(distance, out tangent);
+            doStartOverFlag = false;
+        }
+
 		ballList[headballIndex].transform.DOMove(headPos, 1);
 		ballList[headballIndex].transform.rotation = Quaternion.LookRotation(tangent);
 
 		if (!ballList[headballIndex].activeSelf)
 			ballList[headballIndex].SetActive(true);
+
 
 		for (int i = headballIndex + 1; i < ballList.Count; i++)
 		{

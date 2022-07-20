@@ -20,17 +20,21 @@ public class PointsManager : MonoBehaviour
 
     void Start()
     {
-        highScore = PlayerPrefs.GetInt("highScore", 0);
+        //highScore = PlayerPrefs.GetInt("highScore", 0);
+        highScore = 0;
         scoreText.text = score.ToString() + " POINTS";
         highScoreText.text = "HIGHSCORE: " + highScore.ToString();
     }
-
+   
     public void AddPoints(int amount)
     {
         score += amount;
         scoreText.text = score.ToString() + " POINTS";
         if (highScore < score)
+        {
             PlayerPrefs.SetInt("highScore", score);
+            highScoreText.color=Color.green;
+        }
     }
 
     public void RemovePoints(int amount)
