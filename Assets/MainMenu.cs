@@ -14,4 +14,14 @@ public class MainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("OnBoarding");
     }
+    public void Credis()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+    public void Exit()
+    {
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
+
 }
