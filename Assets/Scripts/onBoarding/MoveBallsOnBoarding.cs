@@ -32,7 +32,7 @@ public class MoveBallsOnBoarding : MonoBehaviour
     [SerializeField]
     private int addBallIndex;
     private int touchedBallIndex;
-    private int cases = 1;
+    public static int cases = 1;
     private float ballRadius;
     private bool onBallFlag = false;
     public static MoveBallsOnBoarding instance;

@@ -50,7 +50,7 @@ public class onBoarding : MonoBehaviour {
             levelContainer.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Mouse0))
                 ClickCounter++;
-            if (ClickCounter > 2)
+            if (ClickCounter > 1)
             {
                 changingText.text = messagesList1.First.Value;
                 messagesList1.RemoveFirst();

@@ -672,17 +672,6 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 418229536}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab0d2e5d3f677843acd682af18c5cad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &418229543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 418229536}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79a2e5c134adf4c488fe5956df977fc4, type: 3}
@@ -700,6 +689,7 @@ GameObject:
   - component: {fileID: 636534142}
   - component: {fileID: 636534141}
   - component: {fileID: 636534140}
+  - component: {fileID: 636534144}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -726,7 +716,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 636534138}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9aa10084db05ada478fa2dd9e187a2c8, type: 3}
   m_Name: 
@@ -788,6 +778,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 636534138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &636534144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 636534138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9c19fe397bd6074ea3cd82a3f855b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dummyBall: {fileID: 418229536}
+  ballSpeed: 1500
+  instanceBall: {fileID: 0}
 --- !u!1 &723112778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1913,7 +1917,7 @@ MonoBehaviour:
   greenBall: {fileID: 1473512860093798, guid: 1c51bcf3b0c7af342813ceadcf5188af, type: 2}
   blueBall: {fileID: 1879031676710954, guid: 6be17ac918b797b47ad8dcc32d8747ae, type: 2}
   yellowBall: {fileID: 1593256217672404, guid: 8254014e8f4276e44a0ebea8b47b8b05, type: 2}
-  pathSpeed: 8
+  pathSpeed: 5
   mergeSpeed: 100
   ballCount: 3
   easeType: 0
