@@ -33,6 +33,7 @@ public class onBoarding : MonoBehaviour {
     void Start () {
         changingText.text = messagesList1.First.Value;
         messagesList1.RemoveFirst();
+
     }
 	
 	// Update is called once per frame

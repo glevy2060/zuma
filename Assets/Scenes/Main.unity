@@ -440,13 +440,14 @@ MonoBehaviour:
   blueBall: {fileID: 1879031676710954, guid: 6be17ac918b797b47ad8dcc32d8747ae, type: 2}
   yellowBall: {fileID: 1593256217672404, guid: 8254014e8f4276e44a0ebea8b47b8b05, type: 2}
   bombBall: {fileID: 0}
-  pathSpeed: 12
-  mergeSpeed: 100
-  ballCount: 1
+  pathSpeed: 5
+  mergeSpeed: 150
+  ballCount: 3
   easeType: 1
   mergeEaseType: 1
   GameOverScreen: {fileID: 1323019314}
   addBallIndex: 0
+  speedIncrement: 1
 --- !u!114 &349653070
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1912,9 +1913,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706b379c1a3325542b6e08220d8d055f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlinkFadeInTime: 0.5
-  BlinkStayTime: 0.8
-  BlinkFadeOutTime: 0.7
 --- !u!1 &1323019310
 GameObject:
   m_ObjectHideFlags: 0

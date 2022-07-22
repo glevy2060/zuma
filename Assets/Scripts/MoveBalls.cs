@@ -52,8 +52,8 @@ public class MoveBalls : MonoBehaviour
 	private int touchedBallIndex;
 	private float ballRadius;
 
-    private bool doStartOverFlag = false; 
-
+    private bool doStartOverFlag = false;
+    public int speedIncrement = 1;
     // Use this for initialization
     private void Start ()
 	{
@@ -61,7 +61,8 @@ public class MoveBalls : MonoBehaviour
         print(redBall.transform.position);
 		headballIndex = 0;
 		addBallIndex = -1;
-
+        pathSpeed += speedIncrement;
+        ballCount += 2;
 		bgCurve = GetComponent<BGCurve>();
         //print(bgCurve.Points[1].PositionLocal);
 		ballList = new List<GameObject>();
@@ -179,6 +180,7 @@ public class MoveBalls : MonoBehaviour
     private void StartOver()
     {
         doStartOverFlag = true;
+        speedIncrement += 2;
         LevelManager.instance.ChangeLevel();
         Start();
     }
