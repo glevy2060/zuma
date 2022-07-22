@@ -9,14 +9,14 @@ public class onBoarding : MonoBehaviour {
     public Text changingText;
     public Text clickToContinue;
     static string message1 = "Welcome to ###!";
-    static string message2 = "Your goal is to prevent the balls from getting to the end of the road";
-    static string message3 = "click to use your canon and shoot the ball";
-    static string message4 = "lets try";
+    static string message2 = "Your goal is to prevent the balls from getting to your canon";
+    static string message3 = "Click to use your canon and shoot the ball";
+    static string message4 = "Lets try it!";
     static string message5 = "Cool!";
-    static string message6 = "now lets try\nto shoot\n those balls";
+    static string message6 = "Now lets try to\nshoot those balls";
     static string message7 = "Hooray!";
-    static string message8 = "now let's try this\n again\n with two colors this time";
-    static string message9 = "Are you ready for a real challenge?";
+    static string message8 = "Let's try this again,\nwith two colors this time";
+    static string message9 = "";
 
 
 
@@ -38,6 +38,8 @@ public class onBoarding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (changingText.text == message2)
+            changingText.fontSize = 30;
 
 
         if (changingText.text == message4)
@@ -76,8 +78,8 @@ public class onBoarding : MonoBehaviour {
 
         if(messagesList2.Count == 0)
         {
-            levelContainer.SetActive(false);
-            clickToContinue.enabled = false;
+            //levelContainer.SetActive(false);
+            //clickToContinue.enabled = false;
             SceneManager.LoadScene("Are you ready");
 
         }

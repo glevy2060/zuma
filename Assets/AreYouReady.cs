@@ -12,9 +12,11 @@ public class AreYouReady : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            SceneManager.LoadScene("Main");
-        }
+
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene("Main");
     }
 }
