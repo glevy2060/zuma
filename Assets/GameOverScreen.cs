@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour {
 
@@ -14,13 +14,19 @@ public class GameOverScreen : MonoBehaviour {
         pointsText.text = score.ToString() + " POINTS";
     }
 
+    private void Update()
+    {
+        pointsText.text = PointsManager.instance.getScore() + " Points";
+    }
+
     public void RestartButton()
     {
-        EditorSceneManager.LoadScene("Main");
+        print("here");
+        SceneManager.LoadScene("Main");
     }
 
     public void ExitButton()
     {
-        EditorSceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main Menu");
     }
 }

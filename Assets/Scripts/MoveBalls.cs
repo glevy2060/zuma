@@ -4,7 +4,7 @@ using UnityEngine;
 using BansheeGz.BGSpline.Components;
 using BansheeGz.BGSpline.Curve;
 using DG.Tweening;
-
+using UnityEngine.SceneManagement;
 public struct ActiveBallList
 {
 	List<GameObject> ballList;
@@ -266,8 +266,10 @@ public class MoveBalls : MonoBehaviour
 
     private void GameOver()
     {
+        print("game over!");
         int currScore = PointsManager.instance.getScore();
-        GameOverScreen.SetUp(currScore);
+        SceneManager.LoadScene("GameOver");
+        //GameOverScreen.SetUp(currScore);
     }
 
 	// Move the active section of balls along the path
