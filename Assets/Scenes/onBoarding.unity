@@ -251,7 +251,6 @@ MonoBehaviour:
   clickToContinue: {fileID: 1665772313}
   ground: {fileID: 370541385}
   levelContainer: {fileID: 1678016480}
-  RedBall: {fileID: 418229536}
 --- !u!1 &229871915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,7 +1670,7 @@ MonoBehaviour:
   greenBall: {fileID: 1473512860093798, guid: 1c51bcf3b0c7af342813ceadcf5188af, type: 2}
   blueBall: {fileID: 1879031676710954, guid: 6be17ac918b797b47ad8dcc32d8747ae, type: 2}
   yellowBall: {fileID: 1593256217672404, guid: 8254014e8f4276e44a0ebea8b47b8b05, type: 2}
-  pathSpeed: 10
+  pathSpeed: 8
   mergeSpeed: 100
   ballCount: 3
   easeType: 0
