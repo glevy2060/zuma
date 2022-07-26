@@ -154,14 +154,13 @@ public class MoveBallsOnBoarding : MonoBehaviour
     {
             if(cases > 1)
             {
-            InstatiateBall(redBall);
             InstatiateBall(blueBall);
+            InstatiateBall(redBall);
             InstatiateBall(blueBall);
 
             }
         else
         {
-                InstatiateBall(redBall);
                 InstatiateBall(redBall);
                 InstatiateBall(redBall);
 

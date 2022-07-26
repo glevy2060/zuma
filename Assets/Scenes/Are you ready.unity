@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -221,7 +221,6 @@ GameObject:
   - component: {fileID: 587680537}
   - component: {fileID: 587680536}
   - component: {fileID: 587680535}
-  - component: {fileID: 587680534}
   - component: {fileID: 587680533}
   m_Layer: 0
   m_Name: Ground (1)
@@ -238,25 +237,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 587680532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740464f6e81c7d348879834be0ec58aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 14d086d600e9d194da97d5d8a865d872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &587680534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 587680532}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99cfd2e97e6632a499f8ee9098cd5078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectToMove: {fileID: 420155254}
-  curve: {fileID: 0}
-  tweenSpeed: 4
-  followTransform: {fileID: 917508979}
-  easeSetting: 17
 --- !u!64 &587680535
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -286,7 +269,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 82ea173fe91fd944c89e3190d28b97e6, type: 2}
+  - {fileID: 2100000, guid: 229c23221f789db428cce9c8084132ec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -568,7 +551,7 @@ GameObject:
   - component: {fileID: 1087647861}
   - component: {fileID: 1087647860}
   m_Layer: 0
-  m_Name: welcome to !
+  m_Name: RUR?
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
 
 
     int level = 1;
-
     private void Awake()
     {
         instance = this;

@@ -36,7 +36,7 @@ public class BallColliderOnBoarding : MonoBehaviour
             else
                 moveBallsScript.AddNewBallAt(this.gameObject, currentIdx, currentIdx);
 
-            this.gameObject.GetComponent<BallCollider>().enabled = false;
+            this.gameObject.GetComponent<BallColliderOnBoarding>().enabled = false;
         }
     }
 }

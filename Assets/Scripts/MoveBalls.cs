@@ -5,6 +5,8 @@ using BansheeGz.BGSpline.Components;
 using BansheeGz.BGSpline.Curve;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public struct ActiveBallList
 {
 	List<GameObject> ballList;
@@ -51,14 +53,15 @@ public class MoveBalls : MonoBehaviour
 	private int addBallIndex;
 	private int touchedBallIndex;
 	private float ballRadius;
-
+    private static Stack<int> ballsStack = new Stack<int>();
     private bool doStartOverFlag = false;
     public int speedIncrement = 1;
+    public static int numberOfLives = 3;
+    public Text livesText;
     // Use this for initialization
     private void Start ()
 	{
 		ballRadius = redBall.transform.localScale.x;
-        print(redBall.transform.position);
 		headballIndex = 0;
 		addBallIndex = -1;
         pathSpeed += speedIncrement;
@@ -141,10 +144,31 @@ public class MoveBalls : MonoBehaviour
 	 * Static Section
 	 * =============
 	 */
+     public  void updateNumberOfLives()
+    {
+        numberOfLives--;
+        if (numberOfLives == 0)
+            GameOver();
+        else
+            StartOverFromTheSameLevel();
+
+    }
 
 	public static BallType GetRandomBallColor()
 	{
 		int rInt = Random.Range(0, 3);
+
+        //Prevent 3 balls in a row of the same kind
+        if (ballsStack.Count > 1)
+        {
+            int last = ballsStack.Pop();
+            int beforeLast = ballsStack.Pop();
+            bool sameType = last == beforeLast;
+            while (sameType && rInt == last)
+                rInt = Random.Range(0, 3);
+            ballsStack.Push(last);
+        }
+        ballsStack.Push(rInt);
 		return (BallType)rInt;
 	}
 
@@ -177,6 +201,13 @@ public class MoveBalls : MonoBehaviour
 		}
 	}
 
+    private void StartOverFromTheSameLevel()
+    {
+        LivesManager.instance.ChangeLives(numberOfLives);
+        RemoveBalls(headballIndex, ballList.Count);
+        doStartOverFlag = true;
+        Start();
+    }
     private void StartOver()
     {
         doStartOverFlag = true;
@@ -210,8 +241,6 @@ public class MoveBalls : MonoBehaviour
     private void InstatiateBallFromBeginning(GameObject ballGameObject)
     {
         Vector3 test =new Vector3((float)-0.3390636, (float)2.14003, (float)4.850493);
-        //print(test);
-        print(ballsContainerGO.transform);
         GameObject go = Instantiate(ballGameObject, test, Quaternion.identity, ballsContainerGO.transform);
         go.SetActive(false);
         ballList.Add(go.gameObject);
@@ -304,7 +333,7 @@ public class MoveBalls : MonoBehaviour
 			Vector3 trailPos = GetComponent<BGCcMath>().CalcPositionAndTangentByDistance(currentBallDist , out tangent);
 
             if (IsGameOver(trailPos))  
-                GameOver();
+                updateNumberOfLives();
   
             if (i == addBallIndex && addBallIndex != -1)
 				ballList[i].transform.DOMove(trailPos, 0.5f)
@@ -494,7 +523,6 @@ public class MoveBalls : MonoBehaviour
 				headballIndex -= (back - front + 1);
 			}
 
-			Debug.Log("HEAD INDEX:" + headballIndex);
 
 			RemoveBalls(front, back - front + 1);
 

@@ -7,10 +7,9 @@ public class RotateLauncher : MonoBehaviour
 	public GameObject dummyBall;
 	public float ballSpeed = 10;
 	public GameObject instanceBall;
-
 	private Vector3 lookPos;
 
-	private void Start()
+    private void Start()
 	{
 		CreateBall();
 	}
