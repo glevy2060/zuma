@@ -4,10 +4,17 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
-
+    bool firstTime = true;
     public void PlayGame()
     {
-        SceneManager.LoadScene("Main");
+        if (firstTime)
+        {
+            firstTime = false;
+            SceneManager.LoadScene("First Time Play");
+        }
+        else
+            SceneManager.LoadScene("Main");
+
     }
 
     public void OnBoarding()
