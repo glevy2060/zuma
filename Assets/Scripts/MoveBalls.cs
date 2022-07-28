@@ -145,8 +145,8 @@ public class MoveBalls : MonoBehaviour
 	 */
      public  void updateNumberOfLives()
     {
-       
-        if (numberOfLives == 1)
+        numberOfLives--;
+        if (numberOfLives == 0)
             GameOver();
         else
             StartOverFromTheSameLevel();
@@ -202,7 +202,6 @@ public class MoveBalls : MonoBehaviour
 
     private void StartOverFromTheSameLevel()
     {
-        numberOfLives--;
         LivesManager.instance.ChangeLives(numberOfLives);
         RemoveBalls(headballIndex, ballList.Count);
         doStartOverFlag = true;
