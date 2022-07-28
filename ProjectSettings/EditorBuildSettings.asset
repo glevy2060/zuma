@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/First Time Play.unity
     guid: 725b3e646be747d4ba66f2a9a9e8672f
+  - enabled: 1
+    path: Assets/Scenes/Over.unity
+    guid: 05e9b11761d32f846ac782f5e7c34f50
   m_configObjects: {}

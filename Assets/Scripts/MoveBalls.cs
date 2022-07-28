@@ -295,7 +295,9 @@ public class MoveBalls : MonoBehaviour
     private void GameOver()
     {
         print("game over!");
-        SceneManager.LoadScene("Game Over");
+        numberOfLives = 3;
+        SceneManager.LoadScene("Over");
+
     }
 
 	// Move the active section of balls along the path
