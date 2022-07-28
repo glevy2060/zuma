@@ -145,8 +145,8 @@ public class MoveBalls : MonoBehaviour
 	 */
      public  void updateNumberOfLives()
     {
-        numberOfLives--;
-        if (numberOfLives == 0)
+       
+        if (numberOfLives == 1)
             GameOver();
         else
             StartOverFromTheSameLevel();
@@ -202,6 +202,7 @@ public class MoveBalls : MonoBehaviour
 
     private void StartOverFromTheSameLevel()
     {
+        numberOfLives--;
         LivesManager.instance.ChangeLives(numberOfLives);
         RemoveBalls(headballIndex, ballList.Count);
         doStartOverFlag = true;
@@ -295,9 +296,7 @@ public class MoveBalls : MonoBehaviour
     private void GameOver()
     {
         print("game over!");
-        int currScore = PointsManager.instance.getScore();
-        SceneManager.LoadScene("GameOver");
-        //GameOverScreen.SetUp(currScore);
+        SceneManager.LoadScene("Game Over");
     }
 
 	// Move the active section of balls along the path

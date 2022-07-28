@@ -11,7 +11,7 @@ public class LivesManager : MonoBehaviour {
     private float _BlinkTime = 0;
     Color prevColor;
 
-    int lives = 3;
+    int lives = MoveBalls.numberOfLives;
     // Use this for initialization
     private void Awake()
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RotateLauncher : MonoBehaviour
 {
@@ -25,7 +26,9 @@ public class RotateLauncher : MonoBehaviour
  	private void FixedUpdate()
 	{
 		ShootBall();
-	}
+        if(Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("Main Menu");
+    }
 
 	// Rotate the launcher along the mouse position
 	private void RotatePlayerAlongMousePosition ()
