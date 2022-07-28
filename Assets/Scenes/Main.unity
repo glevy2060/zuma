@@ -440,8 +440,8 @@ MonoBehaviour:
   blueBall: {fileID: 1879031676710954, guid: 6be17ac918b797b47ad8dcc32d8747ae, type: 2}
   yellowBall: {fileID: 1593256217672404, guid: 8254014e8f4276e44a0ebea8b47b8b05, type: 2}
   bombBall: {fileID: 100002, guid: 38972d9a807375f4fbdbf2e076aa183f, type: 3}
-  pathSpeed: 7
-  mergeSpeed: 150
+  pathSpeed: 5
+  mergeSpeed: 140
   ballCount: 6
   easeType: 1
   mergeEaseType: 1
@@ -1020,7 +1020,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -317, y: -250}
+  m_AnchoredPosition: {x: -310, y: -250}
   m_SizeDelta: {x: 183.2, y: 59.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387128128

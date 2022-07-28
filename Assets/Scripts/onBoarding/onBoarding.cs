@@ -8,11 +8,11 @@ public class onBoarding : MonoBehaviour {
 
     public Text changingText;
     public Text clickToContinue;
-    static string message1 = "Welcome to ###!";
+    static string message1 = "Welcome to Ball Blast!";
     static string message2 = "Your goal is to prevent the balls from getting to your canon";
     static string message3 = "Click to use your canon and shoot the ball";
     static string message4 = "Lets try it!";
-    static string message5 = "Cool!";
+    static string message5 = "You can shoot the balls\nin any direction!\nIf you stuck with an \nunwanted ball color you\ncan shoot it outside";
     static string message6 = "Now lets try to\nshoot those balls";
     static string message7 = "Hooray!";
     static string message8 = "Let's try this again,\nwith two colors this time";
@@ -38,8 +38,7 @@ public class onBoarding : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (changingText.text == message2)
-            changingText.fontSize = 30;
+   
 
 
         if (changingText.text == message4)
@@ -57,15 +56,14 @@ public class onBoarding : MonoBehaviour {
             }
 
         }
-        else if (changingText.text == message5)
+        else if (changingText.text == message6)
         {
             clickToContinue.enabled = true;
             clickToContinue.alignment = TextAnchor.UpperLeft;
+            MoveBallsOnBoarding.instance.setOnBallFlag(true);
             MoveToNextMessage();
 
-        }
-        else if (changingText.text == message6)
-            MoveBallsOnBoarding.instance.setOnBallFlag(true);
+        }           
 
 
 
@@ -78,8 +76,7 @@ public class onBoarding : MonoBehaviour {
 
         if(messagesList2.Count == 0)
         {
-            //levelContainer.SetActive(false);
-            //clickToContinue.enabled = false;
+
             SceneManager.LoadScene("Are you ready");
 
         }
@@ -95,6 +92,8 @@ public class onBoarding : MonoBehaviour {
             {
                 changingText.text = messagesList1.First.Value;
                 messagesList1.RemoveFirst();
+                if (changingText.text == message2)
+                    changingText.fontSize = 30;
             }
         }
     }

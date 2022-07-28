@@ -703,7 +703,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Welcom To ###!'
+  m_Text: 
 --- !u!222 &1388189211
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -900,7 +900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Click Anywhere to Continue
+  m_Text: <Click Anywhere to Continue>
 --- !u!222 &1665772314
 CanvasRenderer:
   m_ObjectHideFlags: 0

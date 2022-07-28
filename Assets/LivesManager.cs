@@ -42,6 +42,8 @@ public class LivesManager : MonoBehaviour {
                 needToChange = 0;
             }
         }
+        if (lives == 1)
+            livesText.color = Color.red;
     }
     public void ChangeLives(int lives)
     {

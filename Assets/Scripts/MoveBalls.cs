@@ -67,7 +67,6 @@ public class MoveBalls : MonoBehaviour
         pathSpeed += speedIncrement;
         ballCount += 2;
 		bgCurve = GetComponent<BGCurve>();
-        //print(bgCurve.Points[1].PositionLocal);
 		ballList = new List<GameObject>();
 
 		ballsContainerGO = new GameObject();
